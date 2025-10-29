@@ -1,18 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-   <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Student</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="student.js"></script>
 </head>
 <body>
-  <iframe src="navbar.html" style="width:100%; height:50px; border:none;"></iframe>
+  <nav class="navbar">
+    <ul>
+      <li><a href="attendance.html">Attendance List</a></li>
+      <li><a href="addstudent.html">Add Student</a></li>
+      <li><a href="#">Reports</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </nav>
 
-  <h1>Add Student</h1>
-  <form>
-    <label for="studentName">Student Name:</label>
-    <input type="text" id="studentName" name="studentName">
-    <button type="submit">Add</button>
+  <h2>Add New Student</h2>
+
+  <form id="studentForm">
+    <label>Student ID:</label>
+    <input type="text" id="studentId" required>
+    <div class="error" id="idError"></div>
+
+    <label>Last Name:</label>
+    <input type="text" id="lastName" required>
+    <div class="error" id="lastError"></div>
+
+    <label>First Name:</label>
+    <input type="text" id="firstName" required>
+    <div class="error" id="firstError"></div>
+
+    <label>Email:</label>
+    <input type="email" id="email" required>
+    <div class="error" id="emailError"></div>
+
+    <button type="submit">Submit</button>
   </form>
 </body>
 </html>

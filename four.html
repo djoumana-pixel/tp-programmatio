@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attendance Table</title>
+
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: center;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    .green { background-color: #c8f7c5; }
+    .yellow { background-color: #fff9b1; }
+    .red { background-color: #ffb3b3; }
+
+    #attendanceTable tbody tr.green:hover { background-color: #76c99e; transition: 0.3s; }
+    #attendanceTable tbody tr.yellow:hover { background-color: #fffbd0; transition: 0.3s; }
+    #attendanceTable tbody tr.red:hover { background-color: #ffd6d6; transition: 0.3s; }
+
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 25px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover { background-color: #45a049; }
+
+    #reportChart {
+      min-width: 700px;
+      max-width: 1200px;
+      margin: 30px auto;
+      display: block;
+    }
+
+    h1, h2 { text-align: center; }
+
+    /* Message box for notifications */
+    #messageBox {
+      display: none;
+      text-align: center;
+      margin: 15px auto;
+      width: 60%;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      color: white;
+    }
+
+    /* ===== Form Styling ===== */
+    .container {
+      max-width: 600px;
+      background-color: #f9f9f9;
+      padding: 25px 30px;
+      margin: 40px auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .container h1 { text-align: center; margin-bottom: 20px; color: #333; }
+    #studentForm { display: flex; flex-direction: column; gap: 15px; }
+    #studentForm label { font-weight: bold; color: #333; }
+    #studentForm input[type="number"],
+    #studentForm input[type="text"],
+    #studentForm input[type="email"] {
+      padding: 10px; border: 1px solid #ccc; border-radius: 6px;
+      font-size: 15px; transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    #studentForm input:focus {
+      border-color: #4CAF50; box-shadow: 0 0 5px rgba(76,175,80,0.3); outline: none;
+    }
+    #studentForm input[type="submit"] {
+      background-color: #4CAF50; color: white; font-size: 16px; font-weight: bold;
+      padding: 10px; border: none; border-radius: 8px; cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #studentForm input[type="submit"]:hover { background-color: #45a049; }
+    .note { text-align: center; font-size: 14px; color: #666; margin-top: 10px; }
+
+    /* Highlight animation for excellent students */
+    .excellent-highlight {
+      animation: excellentPulse 1s ease-in-out;
+      box-shadow: 0 0 14px rgba(76, 175, 80, 0.8);
+    }
+    @keyframes excellentPulse {
+      0% { transform: translateY(0); background-color: rgba(156, 225, 176, 0.6); }
+      50% { transform: translateY(-4px); background-color: rgba(76, 175, 80, 0.35); }
+      100% { transform: translateY(0); background-color: rgba(156, 225, 176, 0.6); }
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <div id="messageBox"></div>
+
+  <h1>Attendance list</h1>
+  <p>This table shows attendance and participation for six sessions.</p>
+
+  <table id="attendanceTable" aria-label="Student attendance table">
+    <caption>Student Attendance List — Session 1 to Session 6</caption>
+    <thead>
+      <tr>
+        <th rowspan="2">Student ID</th>
+        <th rowspan="2">Last Name</th>
+        <th rowspan="2">First Name</th>
+        <th colspan="6">Attendance (S1–S6)</th>
+        <th colspan="6">Participation (P1–P6)</th>
+        <th rowspan="2">Message</th>
+      </tr>
+      <tr>
+        <th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>S5</th><th>S6</th>
+        <th>P1</th><th>P2</th><th>P3</th><th>P4</th><th>P5</th><th>P6</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>20251001</td><td>Ahmed</td><td>Sara</td>
+        <td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td>
+        <td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td>
+        <td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td>
+        <td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>20251002</td><td>Yacine</td><td>Ali</td>
+        <td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td>
+        <td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td>
+        <td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td>
+        <td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>20251003</td><td>Houcine</td><td>Rania</td>
+        <td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td>
+        <td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td>
+        <td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td>
+        <td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="container">
+    <h1>Add New Student</h1>
+    <form id="studentForm" action="#" method="post">
+      <label for="studentID">Student ID:</label>
+      <input type="number" id="studentID" name="studentID" placeholder="Enter student ID" required />
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required />
+
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" placeholder="Enter first name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter email" required />
+
+      <input type="submit" value="Submit" />
+    </form>
+    <p class="note">Fill out all fields, then click “Submit” to add the new student.</p>
+  </div>
+
+  <button id="showReportBtn" type="button">Show Report</button>
+  <button id="highlightBtn" type="button">Highlight Excellent Students</button>
+  <button id="resetBtn" type="button">Reset Colors</button>
+
+  <section id="reportSection" style="margin-top: 20px; display: none;">
+    <h2>Attendance Report</h2>
+    <canvas id="reportChart"></canvas>
+  </section>
+
+  <script src="four.js"></script>
+</body>
+</html>
+
+

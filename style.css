@@ -1,141 +1,116 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    padding: 30px;
+    text-align: center;
+    margin: 0;
 }
 
-h2 {
-  text-align: center;
-  color: #333;
-  margin-top: 20px;
+h1 {
+    color: #333;
+    margin-bottom: 30px;
 }
 
-.navbar {
-  background-color: #333;
-  padding: 10px 0;
+/* Buttons – menu و أزرار خضراء */
+.btn {
+    display: inline-block;
+    margin: 15px 10px;
+    padding: 20px 40px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+.btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
 }
 
-.navbar ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
+/* Form Container */
+.form-box {
+    background-color: white;
+    width: 450px;
+    margin: auto;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+    text-align: left;
 }
 
-.navbar li {
-  margin: 0 15px;
+/* Form Inputs */
+input, select {
+    padding: 12px;
+    margin: 10px 0;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+input:focus, select:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76,175,80,0.5);
+    outline: none;
 }
 
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+/* Submit Button */
+input[type="submit"] {
+    width: 150px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 6px;
 }
+input[type="submit"]:hover { background-color: #45a049; }
 
-.navbar a:hover {
-  color: #ffcc00;
-}
-
-
+/* Table Styles */
 table {
-  width: 90%;
-  margin: 20px auto;
-  border-collapse: collapse;
-  background-color: white;
+    border-collapse: collapse;
+    width: 90%;
+    margin: 25px auto;
+    background-color: white;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
-
 th, td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: center;
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
 }
-
 th {
-  background-color: #eee;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+tr:hover { background-color: #f1f1f1; }
+
+/* Delete Button */
+a.delete-btn {
+    text-decoration: none;
+    color: white;
+    background-color: #f44336;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+a.delete-btn:hover { background-color: #d32f2f; transform: translateY(-1px); }
+
+/* Success / Error Messages */
+.success { color: green; font-weight: bold; margin: 15px 0; }
+.error { color: red; font-weight: bold; margin: 15px 0; }
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .form-box, table { width: 95%; }
+    input, select { width: 90%; }
+    .btn { width: 90%; padding: 15px 0; }
 }
 
 
-form {
-  width: 50%;
-  margin: 30px auto;
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
 
-label {
-  display: inline-block;
-  width: 120px;
-  margin-bottom: 6px;
-}
 
-input {
-  padding: 8px;
-  width: 60%;
-  margin-bottom: 10px;
-}
-
-button {
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  display: block;
-  margin: 10px auto;
-}
-
-button:hover {
-  background-color: #ffcc00;
-  color: #333;
-}
-
-.error {
-  color: red;
-  font-size: 0.9em;
-  margin-left: 120px;
-  margin-bottom: 10px;
-}
-
-.navbar a.active {
-  color: #ffcc00;
-  border-bottom: 2px solid #ffcc00;
-}
-
-/* Home section styling */
-.home-section {
-  text-align: center;
-  margin-top: 60px;
-  color: #333;
-}
-
-.home-section h1 {
-  color: #222;
-  margin-bottom: 15px;
-}
-
-.home-list {
-  list-style: none;
-  padding: 0;
-  font-size: 1.1em;
-  line-height: 1.8;
-}
-
-.note {
-  margin-top: 25px;
-  font-style: italic;
-  color: #666;
-}
-input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-}
-
-th, td {
-  text-align: center;
-  padding: 8px;
-}
